@@ -14,7 +14,8 @@ int main() {
 	double semesterCredtis;
 	vector<double> credits;
 
-
+	cout << "Do you want to calculate: \n" << "(1) The current semesters GPA?\n"
+		<< "(2) Total GPA?\n";
 
 	return 0;
 }
