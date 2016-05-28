@@ -64,18 +64,23 @@ namespace Plalidrome {
                     front = BigInteger.Parse(subNum);
                     BigInteger subFront = BigInteger.Parse(subNum.Substring(0, (subNum.Length - 1)));
                     if(subFront < rear) {
-                        string rev = strReverse(subFront);
-                        nextPalidrome[i] = BigInteger.Parse(front.ToString() + rev);
-                    }else if(subFront >= rear  {
-                        front++;
-                        if (front.ToString().Length > subNum.Length) {
-                            BigInteger temp = BigInteger.Parse(front.ToString().Remove(half-1));
-                            string rev = strReverse(temp);
-                            nextPalidrome[i] = BigInteger.Parse(front.ToString() + rev);
+                        if (subBack == rearStr) {
+                            nexPal(front, subNum, subFront, nextPalidrome, i, half, true);
                         } else {
                             string rev = strReverse(subFront);
                             nextPalidrome[i] = BigInteger.Parse(front.ToString() + rev);
                         }
+                    }else if(subFront >= rear)  {
+                        nexPal(front, subNum, subFront, nextPalidrome, i, half);
+                        //front++;
+                        //if (front.ToString().Length > subNum.Length) {
+                        //    BigInteger temp = BigInteger.Parse(front.ToString().Remove(half-1));
+                        //    string rev = strReverse(temp);
+                        //    nextPalidrome[i] = BigInteger.Parse(front.ToString() + rev);
+                        //} else {
+                        //    string rev = strReverse(subFront);
+                        //    nextPalidrome[i] = BigInteger.Parse(front.ToString() + rev);
+                        //}
                     }
                 }
             }
@@ -105,6 +110,18 @@ namespace Plalidrome {
             Array.Reverse(newStr);
             return new string(newStr);
         }
-       // static BigInteger nexPal()
+        static void nexPal(BigInteger front, string subNum, BigInteger subFront, BigInteger[] nextPalidrome,
+            int i, int half, bool diff = false) {
+            front++;
+            if (front.ToString().Length > subNum.Length || diff == true) {
+                BigInteger temp = BigInteger.Parse(front.ToString().Remove(half - 1));
+                string rev = strReverse(temp);
+                nextPalidrome[i] = BigInteger.Parse(front.ToString() + rev);
+            } else {
+                string rev = strReverse(subFront);
+                nextPalidrome[i] = BigInteger.Parse(front.ToString() + rev);
+            }
+            return;
+        }
     }
 }
